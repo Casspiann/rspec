@@ -69,7 +69,11 @@ end
 gem 'devise'
 gem 'jwt'
 gem 'bcrypt', '~> 3.1.7'
+gem 'faker'
+gem 'shoulda-matchers'  
+gem 'byebug', '~> 11.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 6.1.0'
+  gem 'factory_bot_rails'
 end

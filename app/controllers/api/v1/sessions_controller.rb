@@ -11,10 +11,18 @@ class Api::V1::SessionsController < ApplicationController
         render json: { error: 'Unauthorized' }, status: :unauthorized
       end
     end
-
+    
+    
     def destroy
+        if current_user.present?
+        # Log out the user (clear session, token, etc.)
+        # Example: session[:user_id] = nil
         render json: { message: 'Logged out successfully' }, status: :ok
+      else
+        render json: { error: 'Unauthorized' }, status: :unauthorized
+      end
     end
+    
   
     private
   
