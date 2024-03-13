@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  # devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  # Remove or comment out Active Admin routes
+  # devise_for :admin_users, ActiveAdmin::Devise.config
+
   resources :comments
   root to: 'api/v1/employees#index'
   

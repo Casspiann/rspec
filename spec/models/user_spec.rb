@@ -16,4 +16,11 @@ RSpec.describe User, type: :model do
     it { should_not allow_value('userexample.com').for(:email) }
     it { should validate_length_of(:password).is_at_least(6) }
   end
+
+  describe '.ransackable_attributes' do
+    it 'returns an array of attribute names' do
+      expected_attributes = ["created_at", "email", "encrypted_password", "id", "id_value", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at"]
+      expect(User.ransackable_attributes).to eq(expected_attributes)
+    end
+  end
 end

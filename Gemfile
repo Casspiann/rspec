@@ -66,14 +66,19 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'devise'
+gem 'devise', '~> 4.8.0'
 gem 'jwt'
 gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
 gem 'shoulda-matchers'  
 gem 'byebug', '~> 11.0'
+gem 'sassc'
+
+
 
 group :development, :test do
   gem 'rspec-rails', '~> 6.1.0'
   gem 'factory_bot_rails'
 end
+
+gem 'activeadmin'

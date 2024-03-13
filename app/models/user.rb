@@ -7,4 +7,8 @@ class User < ApplicationRecord
          validates :password,
                    length: { minimum: 6 },
                    if: -> { new_record? || !password.nil? }
+
+  def self.ransackable_attributes(auth_object = nil)
+  ["created_at", "email", "encrypted_password", "id", "id_value", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at"]
+  end
 end

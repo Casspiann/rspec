@@ -19,4 +19,11 @@ RSpec.describe Employee, type: :model do
       expect(employee).to be_valid
     end
   end
+
+  describe '.ransackable_attributes' do
+    it 'returns an array of attribute names' do
+      expected_attributes = ["address", "created_at", "email", "id", "id_value", "name", "phoneNo", "updated_at"]
+      expect(Employee.ransackable_attributes).to eq(expected_attributes)
+    end
+  end
 end

@@ -30,8 +30,12 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
       let(:user) { create(:user) }
 
       it 'logs out the user' do
-        token = generate_authentication_token(user)
-        delete :destroy, headers: { 'Authorization' => "Bearer #{token}" }
+        debugger
+        token = JWT.encode({ user_id: user.id }, Rails.application.secrets.secret_key_base)
+
+        request.headers['Authorization'] = "Bearer #{token}" # Include token in request headers
+        delete :destroy
+
         expect(response).to have_http_status(:ok)
         expect(JSON.parse(response.body)).to include('message' => 'Logged out successfully')
       end
@@ -41,7 +45,7 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
       it 'returns unauthorized' do
         delete :destroy
         expect(response).to have_http_status(:unauthorized)
-        expect(JSON.parse(response.body)).to have_key('error')
+        expect(JSON.parse(response.body)).to include('errors' => 'Nil JSON web token')
       end
     end
   end
